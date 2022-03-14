@@ -59,14 +59,14 @@ $ newman run collection.json -d data.json
 
 ----------------------------------------------------------
 
-> Create .gitlab-ci.yml CI configuration file for automated testing
+> For automated testing, create a CI configuration file called.gitlab-ci.yml. Stages and jobs for performing postman collection with newman are included in the CI configuration file.
 
 ```sh
 stages:
-    - build
+    - test
 
 build:
-    stage: build
+    stage: test
     image:
         name: postman/newman_ubuntu1404
         entrypoint: [""]
@@ -78,3 +78,9 @@ build:
         paths:
             - reports.html
 ```
+
+----------------------------------------------------------
+
+> CI test job console output
+
+![Screenshot](CI-test-job-console-output.png)
