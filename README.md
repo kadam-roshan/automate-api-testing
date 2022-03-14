@@ -54,5 +54,27 @@ $ newman run collection.json -n 10  # runs the collection 10 times
 ```
 
 ```sh
-$ newman run mycollection.json -d data.json
+$ newman run collection.json -d data.json
+```
+
+----------------------------------------------------------
+
+> Create .gitlab-ci.yml CI configuration file for automated testing
+
+```sh
+stages:
+    - build
+
+build:
+    stage: build
+    image:
+        name: postman/newman_ubuntu1404
+        entrypoint: [""]
+    script:
+        - newman --version
+        - npm install -g newman-reporter-html
+        - newman run collection.json --reporters cli,html --reporter-html-export reports.html
+    artifacts:
+        paths:
+            - reports.html
 ```
